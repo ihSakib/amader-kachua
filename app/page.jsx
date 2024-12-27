@@ -65,7 +65,7 @@ export default function Home() {
   return (
     <main className="flex-1 max-w-screen-lg mx-auto">
       <section>{/* <Carousel /> */}</section>
-      <section className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-5 pb-4 sm:pb-6 lg:pb-8 lg:px-0 ">
+      <section className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-5 pt-2 pb-6   ">
         {cards.map((card, index) => (
           <Link href={card.href} key={index} prefetch={false}>
             <div className="flex flex-col items-center justify-center gap-3 p-6 shadow-md hover:shadow-lg rounded-md bg-slate-50 cursor-pointer transition-transform hover:scale-105 h-full   border-2 md:border-4 border-transparent hover:border-t-red-500 hover:border-r-green-500 hover:border-b-blue-500 hover:border-l-yellow-500">
