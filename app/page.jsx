@@ -73,13 +73,13 @@ export default function Home() {
       <section className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3 lg:gap-4 pt-4 pb-6   ">
         {cards.map((card, index) => (
           <Link href={card.href} key={index} className="active:cursor-progress">
-            <div className="flex flex-col items-center justify-center gap-3 p-6 shadow-md hover:shadow-lg rounded-md bg-slate-50  transition-transform hover:scale-105 h-full   border-2 md:border-4 border-transparent hover:border-t-red-500 hover:border-r-green-500 hover:border-b-blue-500 hover:border-l-yellow-500 ">
+            <div className="flex flex-col items-center justify-center gap-3 py-6 px-4 md:p-6 shadow-md hover:shadow-lg rounded-md bg-slate-50  transition-transform hover:scale-105 h-full   border-2 md:border-4 border-transparent hover:border-t-red-500 hover:border-r-green-500 hover:border-b-blue-500 hover:border-l-yellow-500 ">
               <Image
-                className="w-8 md:w-12 lg:w-14 flex-1"
+                className="w-8 md:w-12 lg:w-14 "
                 src={card.icon}
                 alt={`${card.title} icon`}
               />
-              <h2 className="text-sm sm:text-base md:text-lg font-semibold text-center flex-1">
+              <h2 className="text-sm sm:text-base md:text-lg font-semibold text-center ">
                 {card.title}
               </h2>
             </div>
