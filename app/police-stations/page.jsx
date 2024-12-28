@@ -6,7 +6,7 @@ const policeStations = fetchData("police-stations");
 
 export default function Page() {
   return (
-    <div className="mx-auto gap-4 grid md:grid-cols-2 md:gap-6 p-4">
+    <div className="md:mx-auto gap-4 grid md:grid-cols-2 md:gap-6 p-4 px-6 pb-8">
       {policeStations.map((station, index) => (
         <div
           key={index}

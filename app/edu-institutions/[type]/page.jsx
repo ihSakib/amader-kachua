@@ -1,34 +1,71 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
 import fetchData from "@/lib/fetchData";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Page() {
-  const doctors = fetchData("doctors");
-
-  const [search, setSearch] = React.useState({
+  const pathname = usePathname();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState({
     name: "",
-    specialty: "",
+    location: "",
   });
 
-  const [currentPage, setCurrentPage] = React.useState(1);
+  const pathSegments = pathname.split("/");
+  const lastSegment = pathSegments[pathSegments.length - 1];
 
-  const doctorsPerPage = 16;
+  const type = lastSegment;
+  let typeInBangla;
 
-  // Filter doctors based on search criteria
-  let filteredDoctors = doctors.filter(
-    (doctor) =>
-      doctor.name.toLowerCase().includes(search.name.toLowerCase()) &&
-      doctor.specialty.toLowerCase().includes(search.specialty.toLowerCase())
-  );
+  console.log(type);
+  switch (type) {
+    case "schools":
+      typeInBangla = "স্কুল";
+      break;
+    case "colleges":
+      typeInBangla = "কলেজ";
+      break;
+    case "madrasahs":
+      typeInBangla = "মাদ্রাসা";
+      break;
+    case "polytechnics":
+      typeInBangla = "পলিটেকনিক্যাল";
+      break;
+    case "others":
+      typeInBangla = "অন্যান্য";
+      break;
+    default:
+      break;
+  }
+
+  const institutions = fetchData("edu-institutions");
+
+  // Filter institutions based on type
+  let filteredInstitutions = institutions.filter((institution) => {
+    return institution.institutionType === typeInBangla;
+  });
+
+  // Filter institutions based on search criteria
+  filteredInstitutions = filteredInstitutions.filter((institution) => {
+    return (
+      institution.name.toLowerCase().includes(search.name.toLowerCase()) &&
+      institution.location.toLowerCase().includes(search.location.toLowerCase())
+    );
+  });
+
+  const institutionsPerPage = 16;
 
   // Calculate pagination
-  const totalPages = Math.ceil(filteredDoctors.length / doctorsPerPage);
-  const displayedDoctors = filteredDoctors.slice(
-    (currentPage - 1) * doctorsPerPage,
-    currentPage * doctorsPerPage
+  const totalPages = Math.ceil(
+    filteredInstitutions.length / institutionsPerPage
+  );
+
+  const displayedInstitutions = filteredInstitutions.slice(
+    (currentPage - 1) * institutionsPerPage,
+    currentPage * institutionsPerPage
   );
 
   // Animation variants
@@ -53,19 +90,19 @@ export default function Page() {
             />
             <select
               className="input input-bordered box-border text-[#9ca3af]"
-              value={search.specialty}
+              value={search.location}
               onChange={(e) =>
-                setSearch({ ...search, specialty: e.target.value })
+                setSearch({ ...search, location: e.target.value })
               }
             >
-              <option value="" disabled selected>
-                বিশেষজ্ঞ খুজুন
+              <option value="" disabled>
+                অবস্থান
               </option>
               {Array.from(
-                new Set(doctors.map((doctor) => doctor.specialty))
-              ).map((specialty, index) => (
-                <option className="text-black" key={index} value={specialty}>
-                  {specialty}
+                new Set(institutions.map((institution) => institution.location))
+              ).map((location, index) => (
+                <option className="text-black" key={index} value={location}>
+                  {location}
                 </option>
               ))}
             </select>
@@ -73,7 +110,7 @@ export default function Page() {
               onClick={() =>
                 setSearch({
                   name: "",
-                  specialty: "",
+                  location: "",
                 })
               }
               className="md:ml-2 btn"
@@ -84,7 +121,7 @@ export default function Page() {
           </div>
         </section>
 
-        {/* Doctors Cards with Animation */}
+        {/* institutions Cards with Animation */}
         <AnimatePresence mode="wait">
           <motion.section
             key={currentPage}
@@ -95,31 +132,33 @@ export default function Page() {
             variants={pageVariants}
             transition={{ duration: 0.2 }}
           >
-            {displayedDoctors.length > 0 ? (
-              displayedDoctors.map((doctor) => (
+            {displayedInstitutions.length > 0 ? (
+              displayedInstitutions.map((institution) => (
                 <Link
                   prefetch={false}
-                  key={doctor.id}
-                  href={`/doctors/${doctor.id}`}
+                  key={institution.id}
+                  href={`/edu-institutions/${type}/${institution.id}`}
                   className="card bg-base-100 shadow-xl flex-col-reverse md:flex-row-reverse gap-4 md:justify-end p-5 hover:bg-base-200 transition rounded-md"
                 >
                   <div className="flex-1  ">
                     <h2 className="text-base md:text-lg font-bold">
-                      {doctor.name}
+                      {institution.name}
                     </h2>
-                    <p className="text-sm text-gray-500">{doctor.specialty}</p>
+                    <p className="text-sm text-gray-500">
+                      {institution.location}
+                    </p>
                   </div>
                   <div className="flex-1 md:flex-none ">
                     <img
                       src="https://placehold.co/300"
-                      alt={doctor.name}
+                      alt={institution.name}
                       className="rounded-sm w-20 h-20 object-cover"
                     />
                   </div>
                 </Link>
               ))
             ) : (
-              <div>No doctors found</div>
+              <div>No institutions found</div>
             )}
           </motion.section>
         </AnimatePresence>

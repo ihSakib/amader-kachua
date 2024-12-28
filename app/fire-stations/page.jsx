@@ -7,7 +7,7 @@ const fireStations = fetchData("fire-stations");
 
 export default function Page() {
   return (
-    <div className="mx-auto grid gap-4 md:grid-cols-2 md:gap-6 p-4">
+    <div className="mx-auto grid gap-4 md:grid-cols-2 md:gap-6 p-4 pb-8">
       {fireStations.map((station, index) => (
         <div
           key={index}

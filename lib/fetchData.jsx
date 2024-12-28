@@ -351,6 +351,310 @@ const fireStations = [
     color: "blue", // Adding color for the others
   },
 ];
+
+const eduInstitutions = [
+  {
+    id: 1,
+    name: "আলোর দিশারী স্কুল",
+    institutionType: "স্কুল",
+    location: "ঢাকা",
+  },
+  {
+    id: 2,
+    name: "চট্টগ্রাম উচ্চ বিদ্যালয়",
+    institutionType: "স্কুল",
+    location: "চট্টগ্রাম",
+  },
+  {
+    id: 3,
+    name: "রাজশাহী কলেজ",
+    institutionTypeType: "কলেজ",
+    location: "রাজশাহী",
+  },
+  {
+    id: 4,
+    name: "খুলনা কারিগরি পলিটেকনিক",
+    institutionType: "পলিটেকনিক্যাল",
+    location: "খুলনা",
+  },
+  {
+    id: 5,
+    name: "বরিশাল ইসলামী মাদ্রাসা",
+    institutionType: "মাদ্রাসা",
+    location: "বরিশাল",
+  },
+  {
+    id: 6,
+    name: "সিলেট পলিটেকনিক ইনস্টিটিউট",
+    institutionType: "পলিটেকনিক্যাল",
+    location: "সিলেট",
+  },
+  {
+    id: 7,
+    name: "রংপুর সরকারি কলেজ",
+    institutionType: "কলেজ",
+    location: "রংপুর",
+  },
+  {
+    id: 8,
+    name: "ময়মনসিংহ বিজ্ঞান বিদ্যালয়",
+    institutionType: "স্কুল",
+    location: "ময়মনসিংহ",
+  },
+  {
+    id: 9,
+    name: "বগুড়া আলিয়া মাদ্রাসা",
+    institutionType: "মাদ্রাসা",
+    location: "বগুড়া",
+  },
+  {
+    id: 10,
+    name: "কুমিল্লা কারিগরি প্রশিক্ষণ কেন্দ্র",
+    institutionType: "পলিটেকনিক্যাল",
+    location: "কুমিল্লা",
+  },
+  {
+    id: 11,
+    name: "জাতীয় আদর্শ স্কুল",
+    institutionType: "স্কুল",
+    location: "ঢাকা",
+  },
+  {
+    id: 12,
+    name: "আধুনিক চট্টগ্রাম কলেজ",
+    institutionType: "কলেজ",
+    location: "চট্টগ্রাম",
+  },
+  {
+    id: 13,
+    name: "রাজশাহী কারিগরি প্রশিক্ষণ কেন্দ্র",
+    institutionType: "পলিটেকনিক্যাল",
+    location: "রাজশাহী",
+  },
+  {
+    id: 14,
+    name: "খুলনা আলিয়া মাদ্রাসা",
+    institutionType: "মাদ্রাসা",
+    location: "খুলনা",
+  },
+  {
+    id: 15,
+    name: "বরিশাল উচ্চ বিদ্যালয়",
+    institutionType: "স্কুল",
+    location: "বরিশাল",
+  },
+  {
+    id: 16,
+    name: "সিলেট সরকারি কলেজ",
+    institutionType: "কলেজ",
+    location: "সিলেট",
+  },
+  {
+    id: 17,
+    name: "রংপুর কারিগরি পলিটেকনিক",
+    institutionType: "পলিটেকনিক্যাল",
+    location: "রংপুর",
+  },
+  {
+    id: 18,
+    name: "ময়মনসিংহ ইসলামী মাদ্রাসা",
+    institutionType: "মাদ্রাসা",
+    location: "ময়মনসিংহ",
+  },
+  {
+    id: 19,
+    name: "বগুড়া বিজ্ঞান বিদ্যালয়",
+    institutionType: "স্কুল",
+    location: "বগুড়া",
+  },
+  {
+    id: 20,
+    name: "কুমিল্লা সরকারি কলেজ",
+    institutionType: "কলেজ",
+    location: "কুমিল্লা",
+  },
+  {
+    id: 21,
+    name: "আল-ইসলাম মাদ্রাসা",
+    institutionType: "মাদ্রাসা",
+    location: "ঢাকা",
+  },
+  {
+    id: 22,
+    name: "আধুনিক বিজ্ঞান স্কুল",
+    institutionType: "স্কুল",
+    location: "চট্টগ্রাম",
+  },
+  {
+    id: 23,
+    name: "জাতীয় প্রযুক্তি পলিটেকনিক",
+    institutionType: "পলিটেকনিক্যাল",
+    location: "রাজশাহী",
+  },
+  {
+    id: 24,
+    name: "খুলনা উচ্চ বিদ্যালয়",
+    institutionType: "স্কুল",
+    location: "খুলনা",
+  },
+  {
+    id: 25,
+    name: "বরিশাল আলিয়া মাদ্রাসা",
+    institutionType: "মাদ্রাসা",
+    location: "বরিশাল",
+  },
+  {
+    id: 26,
+    name: "সিলেট আধুনিক কলেজ",
+    institutionType: "কলেজ",
+    location: "সিলেট",
+  },
+  {
+    id: 27,
+    name: "রংপুর বিজ্ঞান স্কুল",
+    institutionType: "স্কুল",
+    location: "রংপুর",
+  },
+  {
+    id: 28,
+    name: "ময়মনসিংহ কারিগরি প্রশিক্ষণ কেন্দ্র",
+    institutionType: "পলিটেকনিক্যাল",
+    location: "ময়মনসিংহ",
+  },
+  {
+    id: 29,
+    name: "বগুড়া সরকারি কলেজ",
+    institutionType: "কলেজ",
+    location: "বগুড়া",
+  },
+  {
+    id: 30,
+    name: "কুমিল্লা উচ্চ বিদ্যালয়",
+    institutionType: "স্কুল",
+    location: "কুমিল্লা",
+  },
+  {
+    id: 31,
+    name: "ঢাকা কারিগরি পলিটেকনিক",
+    institutionType: "পলিটেকনিক্যাল",
+    location: "ঢাকা",
+  },
+  {
+    id: 32,
+    name: "চট্টগ্রাম ইসলামী মাদ্রাসা",
+    institutionType: "মাদ্রাসা",
+    location: "চট্টগ্রাম",
+  },
+  {
+    id: 33,
+    name: "রাজশাহী সরকারি কলেজ",
+    institutionType: "কলেজ",
+    location: "রাজশাহী",
+  },
+  {
+    id: 34,
+    name: "খুলনা আধুনিক স্কুল",
+    institutionType: "স্কুল",
+    location: "খুলনা",
+  },
+  {
+    id: 35,
+    name: "বরিশাল বিজ্ঞান কলেজ",
+    institutionType: "কলেজ",
+    location: "বরিশাল",
+  },
+  {
+    id: 36,
+    name: "সিলেট কারিগরি পলিটেকনিক",
+    institutionType: "পলিটেকনিক্যাল",
+    location: "সিলেট",
+  },
+  {
+    id: 37,
+    name: "রংপুর আদর্শ মাদ্রাসা",
+    institutionType: "মাদ্রাসা",
+    location: "রংপুর",
+  },
+  {
+    id: 38,
+    name: "ময়মনসিংহ সরকারি বিদ্যালয়",
+    institutionType: "স্কুল",
+    location: "ময়মনসিংহ",
+  },
+  {
+    id: 39,
+    name: "বগুড়া বিজ্ঞান কলেজ",
+    institutionType: "কলেজ",
+    location: "বগুড়া",
+  },
+  {
+    id: 40,
+    name: "কুমিল্লা আধুনিক পলিটেকনিক",
+    institutionType: "পলিটেকনিক্যাল",
+    location: "কুমিল্লা",
+  },
+  {
+    id: 41,
+    name: "সৃজনশীল পাঠাগার",
+    institutionType: "অন্যান্য",
+    location: "ঢাকা",
+  },
+  {
+    id: 42,
+    name: "চট্টগ্রাম বিজ্ঞান ক্লাব",
+    institutionType: "অন্যান্য",
+    location: "চট্টগ্রাম",
+  },
+  {
+    id: 43,
+    name: "রাজশাহী সংগীত একাডেমি",
+    institutionType: "অন্যান্য",
+    location: "রাজশাহী",
+  },
+  {
+    id: 44,
+    name: "খুলনা যুব প্রশিক্ষণ কেন্দ্র",
+    institutionType: "অন্যান্য",
+    location: "খুলনা",
+  },
+  {
+    id: 45,
+    name: "বরিশাল কারুশিল্প কেন্দ্র",
+    institutionType: "অন্যান্য",
+    location: "বরিশাল",
+  },
+  {
+    id: 46,
+    name: "সিলেট সংস্কৃতি চর্চা কেন্দ্র",
+    institutionType: "অন্যান্য",
+    location: "সিলেট",
+  },
+  {
+    id: 47,
+    name: "রংপুর সাহিত্য একাডেমি",
+    institutionType: "অন্যান্য",
+    location: "রংপুর",
+  },
+  {
+    id: 48,
+    name: "ময়মনসিংহ প্রযুক্তি গবেষণা কেন্দ্র",
+    institutionType: "অন্যান্য",
+    location: "ময়মনসিংহ",
+  },
+  {
+    id: 49,
+    name: "বগুড়া কম্পিউটার ক্লাব",
+    institutionType: "অন্যান্য",
+    location: "বগুড়া",
+  },
+  {
+    id: 50,
+    name: "কুমিল্লা যুব উন্নয়ন কেন্দ্র",
+    institutionType: "অন্যান্য",
+    location: "কুমিল্লা",
+  },
+];
+
 export default function fetchData(type, id) {
   if (id == undefined) {
     switch (type) {
@@ -363,6 +667,9 @@ export default function fetchData(type, id) {
       case "fire-stations":
         return fireStations;
         break;
+      case "edu-institutions":
+        return eduInstitutions;
+        break;
       default:
         break;
     }
@@ -371,7 +678,9 @@ export default function fetchData(type, id) {
       case "doctors":
         return doctors.find((doctor) => doctor.id == id);
         break;
-
+      case "edu-institutions":
+        return eduInstitutions.find((institution) => institution.id == id);
+        break;
       default:
         break;
     }
