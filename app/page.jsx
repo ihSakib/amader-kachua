@@ -21,9 +21,14 @@ import jobIcon from "@/public/icons/job.png";
 import entrepreneurIcon from "@/public/icons/entrepreneur.png";
 import postOfficesIcon from "@/public/icons/postbox.png";
 import educationIcon from "@/public/icons/university.png";
+import avatarIcon from "@/public/icons/user.png";
+import plusIcon from "@/public/icons/writing.png";
 
 export default function Home() {
   const cards = [
+    { href: "/my-account", icon: avatarIcon, title: "মাই একাউন্ট" },
+    { href: "/add-information", icon: plusIcon, title: "তথ্য দিন" },
+
     { href: "/doctors", icon: doctorIcon, title: "ডাক্তার" },
     { href: "/hospitals", icon: hospitalIcon, title: "হাসপাতাল" },
     { href: "/fire-stations", icon: fireStationIcon, title: "ফায়ার স্টেশন" },
