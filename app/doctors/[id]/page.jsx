@@ -1,13 +1,13 @@
 import React from "react";
 import fetchData from "@/lib/fetchData";
 
-export async function generateStaticParams() {
-  // Fetch or hardcode the list of IDs you want to statically generate
-  const doctors = fetchData("doctors");
-  const ids = doctors.map((doctor) => doctor.id.toString());
+// export async function generateStaticParams() {
+//   // Fetch or hardcode the list of IDs you want to statically generate
+//   const doctors = fetchData("doctors");
+//   const ids = doctors.map((doctor) => doctor.id.toString());
 
-  return ids.map((id) => ({ id }));
-}
+//   return ids.map((id) => ({ id }));
+// }
 
 export default function DoctorProfile({ params }) {
   const { id } = params;
