@@ -192,7 +192,7 @@ export default function page() {
         </div>
       </div>
 
-      <div className="my-4 md:my-6 lg:my-8 px-6 flex justify-center lg:justify-start  gap-2 md:gap-4">
+      <div className="my-4 md:my-6 lg:my-8 flex-wrap px-6 flex justify-center lg:justify-start  gap-2 md:gap-4">
         <Link
           href={"/my-account/statistics"}
           className="btn btn-neutral btn-outline md:text-lg md:btn-wide"
@@ -201,10 +201,23 @@ export default function page() {
         </Link>
 
         <Link
-          href={"/add-information"}
+          href={"/my-account/add-information"}
           className="btn btn-neutral btn-outline md:text-lg md:btn-wide"
         >
           <i className="fa-solid fa-plus"></i> তথ্য দিন
+        </Link>
+
+        <Link
+          href={"/my-account/manage-bloods"}
+          className="btn btn-neutral btn-outline md:text-lg md:btn-wide"
+        >
+          <i class="fa-solid fa-droplet"></i> ম্যানেজ ব্লাড
+        </Link>
+        <Link
+          href={"/my-account/add-jobs"}
+          className="btn btn-neutral btn-outline md:text-lg md:btn-wide"
+        >
+          <i class="fa-solid fa-suitcase"></i> ম্যানেজ জব
         </Link>
       </div>
     </div>

@@ -18,7 +18,7 @@ export default function Layout({ children }) {
             <Link
               href="/"
               className={`tooltip ${isActive("/") ? "active" : ""}`}
-              data-tip="Home"
+              data-tip="হোম"
             >
               <i className="fa-solid fa-house h-5 w-5"></i>
             </Link>
@@ -26,30 +26,40 @@ export default function Layout({ children }) {
           <li>
             <Link
               href="/my-account"
-              className={`tooltip ${
-                isActive("/my-account") ? "active" : ""
-              }`}
-              data-tip="Profile"
+              className={`tooltip ${isActive("/my-account") ? "active" : ""}`}
+              data-tip="প্রোফাইল"
             >
               <i className="fas fa-user h-5 w-5"></i>
             </Link>
           </li>
+
           <li>
             <Link
-              href="/my-account/statistics"
+              href="/my-account/add-information"
               className={`tooltip ${
-                isActive("/my-account/statistics") ? "active" : ""
+                isActive("/my-account/add-information") ? "active" : ""
               }`}
-              data-tip="Stats"
+              data-tip="তথ্য দিন"
             >
-              <i className="fas fa-chart-bar h-5 w-5"></i>
+              <i class="fa-solid fa-feather"></i>{" "}
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/my-account/manage-bloods"
+              className={`tooltip ${
+                isActive("/my-account/manage-bloods") ? "active" : ""
+              }`}
+              data-tip="ম্যানেজ ব্লাড"
+            >
+              <i class="fa-solid fa-droplet"></i>{" "}
             </Link>
           </li>
           <li>
             <Link
               href="/logout"
               className={`tooltip ${isActive("/logout") ? "active" : ""}`}
-              data-tip="Logout"
+              data-tip="লগআউট"
             >
               <i className="fas fa-sign-out-alt h-5 w-5"></i>
             </Link>

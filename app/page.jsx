@@ -27,7 +27,7 @@ import plusIcon from "@/public/icons/writing.png";
 export default function Home() {
   const cards = [
     { href: "/my-account", icon: avatarIcon, title: "মাই একাউন্ট" },
-    { href: "/add-information", icon: plusIcon, title: "তথ্য দিন" },
+    { href: "/my-account/add-information", icon: plusIcon, title: "তথ্য দিন" },
 
     { href: "/doctors", icon: doctorIcon, title: "ডাক্তার" },
     { href: "/hospitals", icon: hospitalIcon, title: "হাসপাতাল" },
