@@ -20,9 +20,9 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
         <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
           rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        ></link>
+        />
       </head>
       <body
         className="flex flex-col justify-between min-h-screen p-4 bg-slate-100"

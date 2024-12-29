@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link"; // Import Link from Next.js
+
 import schoolIcon from "@/public/icons/school.png";
 import collageIcon from "@/public/icons/collage.png";
 import quranIcon from "@/public/icons/quran.png";
