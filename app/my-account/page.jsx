@@ -192,17 +192,17 @@ export default function page() {
         </div>
       </div>
 
-      <div className="my-4 md:my-6 lg:my-8 px-6 flex gap-2 md:gap-4">
+      <div className="my-4 md:my-6 lg:my-8 px-6 flex justify-center lg:justify-start  gap-2 md:gap-4">
         <Link
           href={"/my-account/statistics"}
-          className="btn btn-neutral btn-outline md:text-lg btn-wide"
+          className="btn btn-neutral btn-outline md:text-lg md:btn-wide"
         >
           <i className="fa-solid fa-chart-simple"></i> পরিসংখ্যান
         </Link>
 
         <Link
           href={"/add-information"}
-          className="btn btn-neutral btn-outline md:text-lg btn-wide"
+          className="btn btn-neutral btn-outline md:text-lg md:btn-wide"
         >
           <i className="fa-solid fa-plus"></i> তথ্য দিন
         </Link>
