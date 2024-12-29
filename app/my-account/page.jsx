@@ -1,7 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState } from "react";
-import "daisyui/dist/full.css";
 
 export default function page() {
   const [userInfo, setUserInfo] = useState({
@@ -47,11 +47,11 @@ export default function page() {
   return (
     <div className="container mx-auto p-4 pt-0  max-w-4xl">
       <div className="flex flex-col lg:flex-row items-center gap-4 p-6 pt-4 lg:pt-10">
-        <div className="relative lg:mr-6 ">
+        <div className="relative lg:mr-6 w-32 h-32 lg:w-48 lg:h-48  lg:mb-0 mb-4">
           <img
             src={userInfo.photo}
             alt="User Avatar"
-            className="w-32 h-32 lg:w-48 lg:h-48 mb-4 lg:mb-0"
+            className="h-full w-full"
           />
           {isEditing && (
             <>
@@ -61,26 +61,27 @@ export default function page() {
                 className="absolute z-20 top-0 left-0 w-full h-full opacity-0 cursor-pointer"
               />
               <div className="absolute z-10 top-0 left-0 w-full h-full bg-white/50 flex justify-center items-center">
-                <p className="font-bold">Upload Photo</p>
+                <p className="font-bold">
+                  <i className="text-lg md:text-xl lg:text-2xl fa-solid fa-cloud-arrow-up"></i>
+                </p>
               </div>
             </>
           )}
         </div>
         <div className="flex-1">
           <div className="flex justify-between gap-4 items-center mb-2">
-            <h1 className="text-3xl font-bold">
-              {isEditing ? (
-                <input
-                  type="text"
-                  name="name"
-                  value={userInfo.name}
-                  onChange={handleChange}
-                  className="w-full bg-slate-200 px-2 py-1"
-                />
-              ) : (
-                userInfo.name
-              )}
-            </h1>
+            {isEditing ? (
+              <input
+                type="text"
+                name="name"
+                value={userInfo.name}
+                onChange={handleChange}
+                className="w-full bg-slate-200 px-2 py-1"
+              />
+            ) : (
+              <h1 className="text-3xl font-bold">{userInfo.name} </h1>
+            )}
+
             <button className="btn btn-sm btn-outline" onClick={toggleEdit}>
               {isEditing ? "Save" : "Edit"}
             </button>
@@ -97,6 +98,7 @@ export default function page() {
             ) : (
               <p className="text-gray-600">ই-মেইল: {userInfo.email}</p>
             )}
+
             {isEditing ? (
               <input
                 type="tel"
@@ -108,6 +110,7 @@ export default function page() {
             ) : (
               <p className="text-gray-600">ফোন: {userInfo.phone}</p>
             )}
+
             {isEditing ? (
               <input
                 type="text"
@@ -187,6 +190,22 @@ export default function page() {
             )}
           </div>
         </div>
+      </div>
+
+      <div className="my-4 md:my-6 lg:my-8 px-6 flex gap-2 md:gap-4">
+        <Link
+          href={"/my-account/statistics"}
+          className="btn btn-neutral btn-outline md:text-lg btn-wide"
+        >
+          <i className="fa-solid fa-chart-simple"></i> পরিসংখ্যান
+        </Link>
+
+        <Link
+          href={"/add-information"}
+          className="btn btn-neutral btn-outline md:text-lg btn-wide"
+        >
+          <i className="fa-solid fa-plus"></i> তথ্য দিন
+        </Link>
       </div>
     </div>
   );

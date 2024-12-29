@@ -13,7 +13,7 @@ export default function Layout({ children }) {
       <div>{children}</div>
       {/**fixed bottom*/}
       <div className="fixed bottom-6 right-0 left-0 flex justify-center">
-        <ul className="menu menu-horizontal bg-slate-900 text-white rounded-box mt-6 !px-4 gap-4 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
+        <ul className="menu menu-horizontal bg-slate-900 text-white rounded-box mt-6 !px-4 gap-2 md:gap-4 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
           <li>
             <Link
               href="/"
