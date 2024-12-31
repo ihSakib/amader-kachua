@@ -1,4 +1,4 @@
-"use client"; // Ensures this is a client component
+"use client"; 
 
 import Link from "next/link";
 import React from "react";
@@ -41,7 +41,7 @@ export default function Layout({ children }) {
               }`}
               data-tip="তথ্য দিন"
             >
-              <i class="fa-solid fa-feather"></i>{" "}
+              <i className="fa-solid fa-feather"></i>{" "}
             </Link>
           </li>
           <li>
@@ -52,12 +52,12 @@ export default function Layout({ children }) {
               }`}
               data-tip="ম্যানেজ ব্লাড"
             >
-              <i class="fa-solid fa-droplet"></i>{" "}
+              <i className="fa-solid fa-droplet"></i>{" "}
             </Link>
           </li>
           <li>
             <Link
-              href="/logout"
+              href="/my-account/logout"
               className={`tooltip ${isActive("/logout") ? "active" : ""}`}
               data-tip="লগআউট"
             >
