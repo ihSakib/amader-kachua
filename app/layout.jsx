@@ -28,9 +28,9 @@ export default function RootLayout({ children }) {
         className="flex flex-col justify-between min-h-screen p-4 bg-slate-100"
         style={{ fontFamily: "Anek Bangla, sans-serif" }}
       >
-        <div className="fixed z-[1000] top-16 left-5  bg-red-400 px-4 py-2 text-white text-sm md:text-base font-semibold ">
+        {/* <div className="fixed z-[1000] top-16 left-5  bg-red-400 px-4 py-2 text-white text-sm md:text-base font-semibold ">
           Under Development
-        </div>
+        </div> */}
 
         <header className="text-3xl font-bold text-center md:text-4xl lg:text-5xl pb-3 md:pb-4">
           <Link href="/"> আমাদের কচুয়া</Link>

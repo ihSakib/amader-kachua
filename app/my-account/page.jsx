@@ -29,7 +29,6 @@ export default function page() {
       setLoggedIn(true);
       // setUserInfo(JSON.parse(user));
       setUserInfo(user);
-      console.log(user);
     }
   }, []);
 
@@ -61,7 +60,7 @@ export default function page() {
         </div>
       </div>
 
-      <div className="my-4 md:my-6 lg:my-8 flex-wrap px-6 flex justify-center lg:justify-start gap-2 md:gap-4">
+      <div className="my-4 mb-20 md:my-6 lg:my-8 flex-wrap px-6 grid grid-cols-2 md:flex justify-center lg:justify-start gap-2 md:gap-4">
         <Link
           href={"/my-account/edit"}
           className="btn btn-neutral btn-outline md:text-lg md:btn-wide"
@@ -90,7 +89,7 @@ export default function page() {
           <i className="fa-solid fa-droplet"></i> ম্যানেজ ব্লাড
         </Link>
         <Link
-          href={"/my-account/add-jobs"}
+          href={"/my-account/manage-jobs"}
           className="btn btn-neutral btn-outline md:text-lg md:btn-wide"
         >
           <i className="fa-solid fa-suitcase"></i> ম্যানেজ জব

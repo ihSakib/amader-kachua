@@ -23,10 +23,12 @@ import postOfficesIcon from "@/public/icons/postbox.png";
 import educationIcon from "@/public/icons/university.png";
 import avatarIcon from "@/public/icons/user.png";
 import plusIcon from "@/public/icons/writing.png";
+import loginIcon from "@/public/icons/password.png";
 
 export default function Home() {
   const cards = [
     { href: "/my-account", icon: avatarIcon, title: "মাই একাউন্ট" },
+    { href: "/my-account/login", icon: loginIcon, title: "লগইন" },
     { href: "/my-account/add-information", icon: plusIcon, title: "তথ্য দিন" },
 
     { href: "/doctors", icon: doctorIcon, title: "ডাক্তার" },
@@ -59,7 +61,7 @@ export default function Home() {
     { href: "/hotels", icon: hotelIcon, title: "হোটেল" },
     { href: "/restaurants", icon: restaurantIcon, title: "রেস্টুরেন্ট" },
     { href: "/car-rents", icon: carRentIcon, title: "গাড়ি ভাড়া" },
-    { href: "/mechanics", icon: mechanicIcon, title: "মিস্ত্রি" },
+    { href: "/technicians", icon: mechanicIcon, title: "মিস্ত্রি" },
     { href: "/jobs", icon: jobIcon, title: "চাকরি" },
     { href: "/tourist-attractions", icon: touristIcon, title: "পর্যটন স্থান" },
     { href: "/websites", icon: websiteIcon, title: "ওয়েবসাইট" },

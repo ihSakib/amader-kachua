@@ -89,16 +89,16 @@ export default function EditAccount() {
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-screen-md">
-      <h1 className="text-2xl font-bold mb-6 text-center">Edit Profile</h1>
+    <div className="container mx-auto px-4 md:px-6 mb-20 max-w-screen-sm">
+      <h1 className="text-2xl font-bold my-4 md:mt-6 text-center">এডিট প্রোফাইল</h1>
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6"
       >
         <input type="text" name="id" value={formData.id} id="" hidden={true} />
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Name</span>
+            <span className="label-text">নাম</span>
           </label>
           <input
             type="text"
@@ -110,7 +110,7 @@ export default function EditAccount() {
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Email</span>
+            <span className="label-text">ই-মেইল</span>
           </label>
           <input
             type="email"
@@ -122,7 +122,7 @@ export default function EditAccount() {
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Phone</span>
+            <span className="label-text">ফোন</span>
           </label>
           <input
             type="tel"
@@ -134,7 +134,7 @@ export default function EditAccount() {
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Village</span>
+            <span className="label-text">গ্রাম</span>
           </label>
           <input
             type="text"
@@ -146,7 +146,7 @@ export default function EditAccount() {
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Union</span>
+            <span className="label-text">ইউনিউন</span>
           </label>
           <input
             type="text"
@@ -158,7 +158,7 @@ export default function EditAccount() {
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Ward</span>
+            <span className="label-text">ওয়ার্ড</span>
           </label>
           <input
             type="text"
@@ -170,7 +170,7 @@ export default function EditAccount() {
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Blood Group</span>
+            <span className="label-text">ব্লাড গ্রুপ</span>
           </label>
           <input
             type="text"
@@ -182,7 +182,7 @@ export default function EditAccount() {
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Occupation</span>
+            <span className="label-text">পেশা</span>
           </label>
           <input
             type="text"
@@ -194,7 +194,7 @@ export default function EditAccount() {
         </div>
         <div className="form-control md:col-span-2">
           <label className="label">
-            <span className="label-text">Photo</span>
+            <span className="label-text">ছবি</span>
           </label>
           <input
             type="file"
@@ -207,10 +207,10 @@ export default function EditAccount() {
             {loading ? (
               <span>
                 <i className="fa-solid fa-spinner fa-spin mr-2"></i>
-                Saving...
+                সেভিং...
               </span>
             ) : (
-              "Save Changes"
+              "সেইভ করুন"
             )}
           </button>
         </div>
