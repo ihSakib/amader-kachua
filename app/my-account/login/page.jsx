@@ -5,6 +5,7 @@ import { setCookie } from "nookies";
 
 export default function Page() {
   const [photo, setPhoto] = React.useState(null);
+  const [cover_photo, setCoverPhoto] = React.useState(null);
 
   const handleSignin = async (event) => {
     event.preventDefault();
@@ -43,28 +44,50 @@ export default function Page() {
     event.preventDefault();
 
     // Create a new FormData object and extract the form values
-    const data = new FormData(event.target);
-
+    const formData = new FormData(event.target);
     // console.log(event.target);
 
-    if (photo) {
-      data.set("photo", photo);
-    } else {
-      alert("ছবি আপলোড করুন");
-      return;
-    }
+    // console.log(formData);
+    // const jsonData = JSON.stringify(Object.fromEntries(formData.entries()));
+
+    // Construct the JSON object
+    const data = {
+      user: {
+        username: formData.get("username") || "",
+        email: formData.get("email") || "",
+        first_name: formData.get("first_name") || "",
+        last_name: formData.get("last_name") || "",
+      },
+      password1: formData.get("password1") || "",
+      password2: formData.get("password2") || "",
+      phone_number: formData.get("phone_number") || "",
+      village: formData.get("village") || "",
+      // photo: formData.get("photo") || null,
+      // cover_photo: formData.get("cover_photo") || null,
+      ward: formData.get("ward") || "",
+      union: formData.get("union") || "",
+      district: formData.get("district"), // Add district value if available
+      address: formData.get("address") || "",
+      blood_group: formData.get("blood_group") || "",
+      occupation: formData.get("occupation") || "",
+    };
 
     // Check if password and confirm password match
-    if (data.get("password") !== data.get("confirm_password")) {
+    if (formData.get("password") !== formData.get("confirm_password")) {
       alert("পাসওয়ার্ড মেলেনি!");
       return;
     }
 
     // Send the form data as JSON
-    const response = await fetch("/api/signup", {
-      method: "POST",
-      body: data,
-    });
+    const response = await fetch(
+      "https://amader-kachua.onrender.com/api/profiles/",
+
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }
+    );
 
     const result = await response.json();
 
@@ -75,6 +98,7 @@ export default function Page() {
     if (response.ok) {
       event.target.reset(); // Resets all form fields
       setPhoto(null);
+      setCoverPhoto(null);
     }
   };
 
@@ -139,7 +163,11 @@ export default function Page() {
           role="tabpanel"
           className="tab-content bg-base-100 border-base-300 rounded-box p-6"
         >
-          <form className="px-2 pb-2" onSubmit={handleSignup}>
+          <form
+            className="px-2 pb-2"
+            onSubmit={handleSignup}
+            encType="multipart/form-data"
+          >
             <div className="grid grid-cols-1 lg:grid-cols-2  md:gap-2">
               <div className="form-control mb-4">
                 <label className="label">
@@ -147,8 +175,30 @@ export default function Page() {
                 </label>
                 <input
                   type="text"
-                  name="name"
+                  name="first_name"
                   placeholder="নাম"
+                  className="input input-bordered w-full"
+                />
+              </div>
+              <div className="form-control mb-4">
+                <label className="label">
+                  <span className="label-text">ডাকনাম</span>
+                </label>
+                <input
+                  type="text"
+                  name="last_name"
+                  placeholder="নাম"
+                  className="input input-bordered w-full"
+                />
+              </div>
+              <div className="form-control mb-4">
+                <label className="label">
+                  <span className="label-text">ইউজার নেইম</span>
+                </label>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="ইউজার নেইম"
                   className="input input-bordered w-full"
                 />
               </div>
@@ -169,7 +219,7 @@ export default function Page() {
                 </label>
                 <input
                   type="tel"
-                  name="phone"
+                  name="phone_number"
                   placeholder="ফোন"
                   className="input input-bordered w-full"
                 />
@@ -185,9 +235,21 @@ export default function Page() {
                   className="input input-bordered w-full"
                 />
               </div>
-              <div className="form-control mb-4 lg:col-span-2">
+              <div className="form-control mb-4">
                 <label className="label">
-                  <span className="label-text">ছবি</span>
+                  <span className="label-text">জেলা</span>
+                </label>
+                <input
+                  type="text"
+                  name="district"
+                  placeholder="জেলা"
+                  className="input input-bordered w-full"
+                />
+              </div>
+
+              {/* <div className="form-control mb-4 lg:col-span-2">
+                <label className="label">
+                  <span className="label-text">প্রোফাইল ছবি</span>
                 </label>
                 <input
                   type="file"
@@ -198,6 +260,21 @@ export default function Page() {
                   }}
                 />
               </div>
+
+              <div className="form-control mb-4 lg:col-span-2">
+                <label className="label">
+                  <span className="label-text">কভার ছবি</span>
+                </label>
+                <input
+                  type="file"
+                  name="cover_photo"
+                  className="file-input file-input-bordered w-full"
+                  onChange={(event) => {
+                    setCoverPhoto(event.target.files[0]);
+                  }}
+                />
+              </div> */}
+
               <div className="form-control mb-4">
                 <label className="label">
                   <span className="label-text">ইউনিয়ন</span>
@@ -241,6 +318,7 @@ export default function Page() {
                   </option>
                 </select>
               </div>
+
               <div className="form-control ">
                 <label className="label">
                   <span className="label-text">ওয়ার্ড</span>
@@ -253,8 +331,20 @@ export default function Page() {
                 />
               </div>
 
+              <div className="form-control ">
+                <label className="label">
+                  <span className="label-text">ঠিকানা</span>
+                </label>
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="ঠিকানা"
+                  className="input input-bordered w-full"
+                />
+              </div>
+
               {/* Permanent Address Section with fieldset */}
-              <fieldset className="border-2 border-gray-300 p-4 my-4 lg:col-span-2">
+              {/* <fieldset className="border-2 border-gray-300 p-4 my-4 lg:col-span-2">
                 <legend className=" label-text font-medium">
                   বর্তমান ঠিকানা
                 </legend>
@@ -284,7 +374,7 @@ export default function Page() {
                     />
                   </div>
                 </div>
-              </fieldset>
+              </fieldset> */}
 
               <div className="form-control mb-4">
                 <label className="label">
@@ -322,7 +412,7 @@ export default function Page() {
                 </label>
                 <input
                   type="password"
-                  name="password"
+                  name="password1"
                   placeholder="পাসওয়ার্ড"
                   className="input input-bordered w-full"
                 />
@@ -333,7 +423,7 @@ export default function Page() {
                 </label>
                 <input
                   type="password"
-                  name="confirm_password"
+                  name="password2"
                   placeholder="পাসওয়ার্ড নিশ্চিত করুন"
                   className="input input-bordered w-full"
                 />
