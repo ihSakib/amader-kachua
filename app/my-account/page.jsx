@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 export default function Page() {
   const [userInfo, setUserInfo] = useState({});
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -15,6 +16,7 @@ export default function Page() {
 
         if (!accessToken) {
           setLoggedIn(false);
+          setLoading(false);
           return;
         }
 
@@ -36,18 +38,27 @@ export default function Page() {
         } else {
           setLoggedIn(false);
           if (response.status === 401) {
-            // Token expired, optionally handle refresh logic here
             console.warn("Access token expired. Refresh token may be needed.");
           }
         }
       } catch (error) {
         console.error("Error fetching user info:", error);
         setLoggedIn(false);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchUserInfo();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className=" flex justify-center items-center my-10 md:my-20">
+        <span className="loading loading-bars loading-md md:loading-lg"></span>
+      </div>
+    );
+  }
 
   return isLoggedIn ? (
     <div className="container mx-auto p-4 pt-0 max-w-screen-lg">
@@ -88,21 +99,18 @@ export default function Page() {
         >
           <i className="fa-solid fa-user-pen"></i> এডিট
         </Link>
-
         <Link
           href={"/my-account/statistics"}
           className="btn btn-neutral btn-outline md:text-lg md:btn-wide"
         >
           <i className="fa-solid fa-chart-simple"></i> পরিসংখ্যান
         </Link>
-
         <Link
           href={"/my-account/add-information"}
           className="btn btn-neutral btn-outline md:text-lg md:btn-wide"
         >
           <i className="fa-solid fa-plus"></i> তথ্য দিন
         </Link>
-
         <Link
           href={"/my-account/manage-bloods"}
           className="btn btn-neutral btn-outline md:text-lg md:btn-wide"
