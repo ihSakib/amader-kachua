@@ -1,95 +1,69 @@
-import React from "react";
+"use client";
 
-// Dummy data for power stations
-const powerStations = [
-  {
-    id: 1,
-    name: "Power Station A",
-    village: "Village X",
-    location: "Location Y",
-    availability: [
-      { day: "Monday", time: "9:00 AM - 5:00 PM" },
-      { day: "Tuesday", time: "24/7" },
-    ],
-    contact: {
-      phone: "0123456789",
-      email: "stationA@example.com",
-    },
-    photo: "https://placehold.co/400",
-  },
-  {
-    id: 2,
-    name: "Power Station B",
-    village: "Village Y",
-    location: "Location Z",
-    availability: [
-      { day: "Monday", time: "10:00 AM - 6:00 PM" },
-      { day: "Wednesday", time: "9:00 AM - 5:00 PM" },
-    ],
-    contact: {
-      phone: "0987654321",
-      email: "stationB@example.com",
-    },
-    photo: "https://placehold.co/400",
-  },
-  {
-    id: 3,
-    name: "Power Station C",
-    village: "Village W",
-    location: "Location X",
-    availability: [
-      { day: "Friday", time: "9:00 AM - 12:00 PM" },
-      { day: "Sunday", time: "24/7" },
-    ],
-    contact: {
-      phone: "1122334455",
-      email: "stationC@example.com",
-    },
-    photo: "https://placehold.co/400",
-  },
-];
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
 
-export default function PowerStationProfile({ params }) {
-  const { id } = params;
+export default function DoctorProfile({ doctorId }) {
+  const [doctor, setDoctor] = useState(null);
+  const [error, setError] = useState(null);
 
-  // Find the power station by id
-  const powerStation = powerStations.find(
-    (station) => station.id === parseInt(id)
-  );
+  useEffect(() => {
+    const fetchDoctor = async () => {
+      try {
+        const response = await fetch(
+          `https://amader-kachua.onrender.com/api/doctors/${doctorId}/`
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setDoctor(data);
+        } else {
+          setError("Failed to fetch doctor");
+        }
+      } catch (error) {
+        console.error("Error fetching doctor:", error);
+        setError("Failed to fetch doctor");
+      }
+    };
 
-  // If power station is not found
-  if (!powerStation) {
+    fetchDoctor();
+  }, [doctorId]);
+
+  if (error) {
+    return <p className="text-red-500">Error: {error}</p>;
+  }
+
+  if (!doctor) {
     return (
-      <div className="max-w-screen-lg mx-auto py-10">
-        <p className="text-center text-red-500 text-lg">
-          Power station not found. Please check the ID.
-        </p>
+      <div className=" flex justify-center items-center my-10 md:my-20">
+        <span className="loading loading-bars loading-md md:loading-lg"></span>
       </div>
     );
   }
 
   return (
-    <div className="max-w-screen-lg mx-auto pb-10 pt-4 md:pt-6 lg:pt-10 flex-1">
+    <div className="max-w-screen-lg mx-auto pb-10 pt-4 flex-1">
       <div className="card gap-6 md:card-side bg-base-100 shadow-xl">
         <figure className="lg:w-1/3 w-full">
-          <img
-            src={powerStation.photo}
-            alt={powerStation.name}
-            className="object-cover w-full h-64 lg:h-auto"
+          <Image
+            src={doctor.photo}
+            alt={doctor.name}
+            width={300}
+            height={300}
+            className="object-cover lg:h-auto"
           />
         </figure>
         <div className="card-body lg:w-2/3">
-          <h1 className="card-title text-3xl font-bold">{powerStation.name}</h1>
-          <p className="text-lg text-gray-600">গ্রাম: {powerStation.village}</p>
-          <p className="text-lg text-gray-600">
-            অবস্থান: {powerStation.location}
+          <h1 className="card-title text-3xl font-bold">{doctor.name}</h1>
+          <p className="text-lg text-gray-600">{doctor.specialty}</p>
+          <p className="text-sm md:text-base text-gray-500">
+            {doctor.location}
           </p>
           <p className="text-sm md:text-base text-gray-500">
-            {powerStation.contact.phone} <br /> {powerStation.contact.email}
+            {doctor.contact?.phone} <br /> {doctor.contact?.email}
           </p>
           <h2 className="text-xl font-semibold mt-4">সময়সূচী</h2>
           <ul className="list-disc list-inside mt-2">
-            {powerStation.availability.map((slot, index) => (
+            {doctor.availability?.map((slot, index) => (
               <li key={index} className="text-sm text-gray-500">
                 {slot.day} - {slot.time}
               </li>
@@ -97,7 +71,7 @@ export default function PowerStationProfile({ params }) {
           </ul>
           <div className="card-actions mt-4">
             <a
-              href={`tel:${powerStation.contact.phone}`}
+              href={`tel:${doctor.contact?.phone}`}
               className="btn btn-primary"
             >
               কল করুন

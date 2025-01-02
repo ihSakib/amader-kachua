@@ -20,7 +20,6 @@ export default function Page() {
   const type = lastSegment;
   let typeInBangla;
 
-  console.log(type);
   switch (type) {
     case "schools":
       typeInBangla = "স্কুল";
