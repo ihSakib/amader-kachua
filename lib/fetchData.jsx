@@ -358,6 +358,14 @@ const eduInstitutions = [
     name: "আলোর দিশারী স্কুল",
     institutionType: "স্কুল",
     location: "ঢাকা",
+    description: "",
+    institution_head: "",
+    head_contact_number: "",
+    contact: {
+      phone: "০১৭১২৩৪৫৬৭৮",
+      email: "",
+    },
+    institutionPhoto: "",
   },
   {
     id: 2,

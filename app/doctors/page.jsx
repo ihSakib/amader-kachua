@@ -2,34 +2,51 @@
 
 import React from "react";
 import Link from "next/link";
-import fetchData from "@/lib/fetchData";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Page() {
-  const doctors = fetchData("doctors");
-
   const [search, setSearch] = React.useState({
     name: "",
     specialty: "",
   });
-
+  const [doctors, setDoctors] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState(1);
-
   const doctorsPerPage = 16;
 
-  // Filter doctors based on search criteria
-  let filteredDoctors = doctors.filter(
-    (doctor) =>
-      doctor.name.toLowerCase().includes(search.name.toLowerCase()) &&
-      doctor.specialty.toLowerCase().includes(search.specialty.toLowerCase())
-  );
+  React.useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const response = await fetch(
+          "https://amader-kachua.onrender.com/api/doctors/"
+        );
+        const data = await response.json();
+        setDoctors(data);
+      } catch (error) {
+        console.error("Error fetching doctors:", error);
+      }
+    };
 
-  // Calculate pagination
-  const totalPages = Math.ceil(filteredDoctors.length / doctorsPerPage);
-  const displayedDoctors = filteredDoctors.slice(
-    (currentPage - 1) * doctorsPerPage,
-    currentPage * doctorsPerPage
-  );
+    fetchDoctors();
+  }, []);
+
+  // Filter and paginate doctors
+  let filteredDoctors = [];
+  let displayedDoctors = [];
+  let totalPages = 0;
+
+  if (doctors) {
+    filteredDoctors = doctors.filter(
+      (doctor) =>
+        doctor.name.toLowerCase().includes(search.name.toLowerCase()) &&
+        doctor.specialty.toLowerCase().includes(search.specialty.toLowerCase())
+    );
+
+    totalPages = Math.ceil(filteredDoctors.length / doctorsPerPage);
+    displayedDoctors = filteredDoctors.slice(
+      (currentPage - 1) * doctorsPerPage,
+      currentPage * doctorsPerPage
+    );
+  }
 
   // Animation variants
   const pageVariants = {
@@ -37,6 +54,14 @@ export default function Page() {
     visible: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: 50 },
   };
+
+  if (!doctors) {
+    return (
+      <div className=" flex justify-center items-center my-10 md:my-20">
+        <span className="loading loading-bars loading-md md:loading-lg"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="">
@@ -58,7 +83,7 @@ export default function Page() {
                 setSearch({ ...search, specialty: e.target.value })
               }
             >
-              <option value="" disabled selected>
+              <option value="" disabled >
                 বিশেষজ্ঞ খুজুন
               </option>
               {Array.from(
@@ -109,11 +134,11 @@ export default function Page() {
                     </h2>
                     <p className="text-sm text-gray-500">{doctor.specialty}</p>
                   </div>
-                  <div className="flex-1 md:flex-none ">
+                  <div className="flex-1 md:flex-none w-20 h-20 ">
                     <img
-                      src="https://placehold.co/300"
+                      src={doctor.photo}
                       alt={doctor.name}
-                      className="rounded-sm w-20 h-20 object-cover"
+                      className="rounded-sm  object-cover"
                     />
                   </div>
                 </Link>
