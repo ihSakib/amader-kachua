@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function Page() {
   const [search, setSearch] = React.useState({
@@ -83,7 +84,7 @@ export default function Page() {
                 setSearch({ ...search, specialty: e.target.value })
               }
             >
-              <option value="" disabled >
+              <option value="" disabled>
                 বিশেষজ্ঞ খুজুন
               </option>
               {Array.from(
@@ -123,7 +124,6 @@ export default function Page() {
             {displayedDoctors.length > 0 ? (
               displayedDoctors.map((doctor) => (
                 <Link
-                  prefetch={false}
                   key={doctor.id}
                   href={`/doctors/${doctor.id}`}
                   className="card bg-base-100 shadow-xl flex-col-reverse md:flex-row-reverse gap-4 md:justify-end p-5 hover:bg-base-200 transition rounded-md"
@@ -135,10 +135,12 @@ export default function Page() {
                     <p className="text-sm text-gray-500">{doctor.specialty}</p>
                   </div>
                   <div className="flex-1 md:flex-none w-20 h-20 ">
-                    <img
+                    <Image
                       src={doctor.photo}
                       alt={doctor.name}
-                      className="rounded-sm  object-cover"
+                      width={80}
+                      height={80}
+                      className="rounded-sm w-20 h-20 object-cover"
                     />
                   </div>
                 </Link>
