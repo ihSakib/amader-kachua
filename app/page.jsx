@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 import doctorIcon from "@/public/icons/doctor.png";
 import hospitalIcon from "@/public/icons/hospital.png";
@@ -24,12 +27,45 @@ import educationIcon from "@/public/icons/university.png";
 import avatarIcon from "@/public/icons/user.png";
 import plusIcon from "@/public/icons/writing.png";
 import loginIcon from "@/public/icons/password.png";
+import logoutIcon from "@/public/icons/logout.png";
 
 export default function Home() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    async function checkUser() {
+      const pid = localStorage.getItem("pid");
+      const accessToken = localStorage.getItem("accessToken");
+
+      const response = await fetch(
+        `https://amader-kachua.onrender.com/api/profiles/${pid}/`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        setLoggedIn(true);
+      }
+    }
+
+    checkUser();
+  }, [loggedIn]);
+
   const cards = [
     { href: "/my-account", icon: avatarIcon, title: "মাই একাউন্ট" },
-    { href: "/my-account/login", icon: loginIcon, title: "লগইন" },
-    { href: "/my-account/add-information", icon: plusIcon, title: "তথ্য দিন" },
+    loggedIn
+      ? { href: "/my-account/logout", icon: logoutIcon, title: "লগআউট" }
+      : { href: "/my-account/login", icon: loginIcon, title: "লগইন" },
+    {
+      href: "/my-account/add-information",
+      icon: plusIcon,
+      title: "তথ্য দিন",
+    },
 
     { href: "/doctors", icon: doctorIcon, title: "ডাক্তার" },
     { href: "/hospitals", icon: hospitalIcon, title: "হাসপাতাল" },
@@ -54,7 +90,11 @@ export default function Home() {
       icon: educationIcon,
       title: "শিক্ষা প্রতিষ্ঠান",
     }, // New Entry
-    { href: "/courier-services", icon: courierIcon, title: "কুরিয়ার সার্ভিস" },
+    {
+      href: "/courier-services",
+      icon: courierIcon,
+      title: "কুরিয়ার সার্ভিস",
+    },
     { href: "/buses", icon: busIcon, title: "বাস" },
     { href: "/markets", icon: marketIcon, title: "বাজার" },
     { href: "/house-rentals", icon: houseIcon, title: "বাড়ি ভাড়া" },
@@ -63,7 +103,11 @@ export default function Home() {
     { href: "/car-rents", icon: carRentIcon, title: "গাড়ি ভাড়া" },
     { href: "/technicians", icon: mechanicIcon, title: "মিস্ত্রি" },
     { href: "/jobs", icon: jobIcon, title: "চাকরি" },
-    { href: "/tourist-attractions", icon: touristIcon, title: "পর্যটন স্থান" },
+    {
+      href: "/tourist-attractions",
+      icon: touristIcon,
+      title: "পর্যটন স্থান",
+    },
     { href: "/websites", icon: websiteIcon, title: "ওয়েবসাইট" },
     { href: "/entrepreneurs", icon: entrepreneurIcon, title: "উদ্যোক্তা" },
     { href: "/post-offices", icon: postOfficesIcon, title: "ডাকঘর" },
@@ -74,7 +118,12 @@ export default function Home() {
       <section>{/* <Carousel /> */}</section>
       <section className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3 lg:gap-4 pt-4 pb-6   ">
         {cards.map((card, index) => (
-          <Link href={card.href} key={index} className="active:cursor-progress">
+          <Link
+            href={card.href}
+            key={index}
+            prefetch={false}
+            className="active:cursor-progress"
+          >
             <div className="flex flex-col items-center justify-center gap-3 py-6 px-4 md:p-6 shadow-md hover:shadow-lg rounded-md bg-slate-50  transition-transform hover:scale-105 h-full   border-2 md:border-4 border-transparent hover:border-t-red-500 hover:border-r-green-500 hover:border-b-blue-500 hover:border-l-yellow-500 ">
               <Image
                 className="w-8 md:w-12 lg:w-14 "
