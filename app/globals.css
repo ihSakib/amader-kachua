@@ -4,14 +4,4 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Fira+Code:wght@300..700&family=Parkinsans:wght@300..800&display=swap");
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
